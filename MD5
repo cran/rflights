@@ -1,0 +1,16 @@
+58b49da4c2082d5939ab8a09a34d8be9 *DESCRIPTION
+5819e6dae99bd9b5c54ad694845a2128 *NAMESPACE
+348a180db328a9a4d616e3b71d79c6c0 *R/find-location.R
+517c0b4d225b8e0fc90a0585ba9d5f7f *R/get-flights.R
+5c5094004247b308c4dc42f807cb46a7 *R/zzz.R
+c6a84c6a10a71f72f7389da7d899e65d *README.md
+158424a95b2c48ce4cb08b4ce2c121f6 *build/vignette.rds
+b6d3965d030005048889e36a36ca2865 *inst/doc/basic-usage-example.R
+de903b46491bd918fab01e8de1033d15 *inst/doc/basic-usage-example.Rmd
+41660e03331a3f4888fcebd85461511a *inst/doc/basic-usage-example.html
+06fb5b34d06a023b1670dab44d3dbf6a *man/find_location.Rd
+8f81fb056332a20836a2e4d97d557be8 *man/get_flights.Rd
+c38fb8c63edf3d83f583bdf74c116cb7 *tests/testthat.R
+379067acc90313f87aad9f464ee817fc *tests/testthat/test-find_location.R
+4d46d7b792c042693e2ccbc0882490bf *tests/testthat/test-get_flights.R
+de903b46491bd918fab01e8de1033d15 *vignettes/basic-usage-example.Rmd
