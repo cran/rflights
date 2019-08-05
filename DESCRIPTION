@@ -1,7 +1,7 @@
 Package: rflights
 Type: Package
 Title: Query Plane Tickets using the 'Kiwi' API
-Version: 0.1.0
+Version: 0.1.102
 Authors@R: 
     c(person(given = "Juan Cruz",
              family = "Rodriguez",
@@ -16,12 +16,13 @@ URL: https://github.com/jcrodriguez1989/rflights/
 BugReports: https://github.com/jcrodriguez1989/rflights/issues
 Encoding: UTF-8
 LazyData: true
+Depends: R (>= 2.10)
 Imports: httr, methods
-RoxygenNote: 6.1.1
 Suggests: testthat, covr, knitr, rmarkdown
 VignetteBuilder: knitr
+RoxygenNote: 6.1.1
 NeedsCompilation: no
-Packaged: 2019-05-16 12:50:40 UTC; jcrodriguez
+Packaged: 2019-08-05 16:46:54 UTC; jcrodriguez
 Author: Juan Cruz Rodriguez [aut, cre]
 Repository: CRAN
-Date/Publication: 2019-05-16 16:10:03 UTC
+Date/Publication: 2019-08-05 17:40:02 UTC

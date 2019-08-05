@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 
-<title>Usage</title>
+<title>Basic usage example</title>
 
 <script type="text/javascript">
 window.onload = function() {
@@ -201,6 +201,8 @@ hr {
 </head>
 
 <body>
+<h1>Basic usage example</h1>
+
 <p>Query plane tickets, from several airlines, using the Kiwi API (similar to Google Flights).</p>
 
 <p>The API is documented at <a href="https://docs.kiwi.com/">https://docs.kiwi.com/</a>.</p>
@@ -257,7 +259,7 @@ tl_id &lt;- find_location(&quot;toulouse&quot;)
 length(tl_id)
 </code></pre>
 
-<pre><code>## [1] 4
+<pre><code>## [1] 5
 </code></pre>
 
 <pre><code class="r">lapply(tl_id, function (x) x$type)
@@ -274,6 +276,9 @@ length(tl_id)
 ## 
 ## [[4]]
 ## [1] &quot;tourist_region&quot;
+## 
+## [[5]]
+## [1] &quot;bus_station&quot;
 </code></pre>
 
 <pre><code class="r"># we are looking for the city
@@ -310,7 +315,7 @@ flights &lt;- get_flights(fly_from = &quot;AR&quot;, fly_to = &quot;toulouse_fr&
 length(flights)
 </code></pre>
 
-<pre><code>## [1] 97
+<pre><code>## [1] 223
 </code></pre>
 
 <pre><code class="r">names(flights[[1]])
@@ -331,20 +336,31 @@ length(flights)
 ## [25] &quot;pnr_count&quot;                     &quot;transfers&quot;                    
 ## [27] &quot;has_airport_change&quot;            &quot;virtual_interlining&quot;          
 ## [29] &quot;fly_duration&quot;                  &quot;duration&quot;                     
-## [31] &quot;hashtags&quot;                      &quot;facilitated_booking_available&quot;
-## [33] &quot;conversion&quot;                    &quot;booking_token&quot;                
-## [35] &quot;quality&quot;                       &quot;found_on&quot;
+## [31] &quot;facilitated_booking_available&quot; &quot;type_flights&quot;                 
+## [33] &quot;found_on&quot;                      &quot;conversion&quot;                   
+## [35] &quot;booking_token&quot;                 &quot;quality&quot;                      
+## [37] &quot;deep_link&quot;
 </code></pre>
 
 <pre><code class="r">sapply(flights, function(x) x$price)
 </code></pre>
 
-<pre><code>##  [1] 456 499 499 501 504 504 506 506 506 507 508 508 509 509 511 512 514
-## [18] 514 515 514 514 514 517 520 520 521 522 522 522 524 524 524 525 524
-## [35] 524 526 527 527 527 527 526 527 528 529 530 531 532 531 531 533 534
-## [52] 534 534 534 534 536 536 536 536 537 537 536 537 537 538 538 538 538
-## [69] 537 538 539 539 540 540 540 540 540 541 542 541 542 541 541 541 543
-## [86] 542 542 544 554 621 681 719 721 720 724 728 740
+<pre><code>##   [1]  667  667  667  668  669  671  679  680  686  691  699  699  703  708
+##  [15]  708  712  715  716  717  717  718  718  720  720  724  723  725  727
+##  [29]  728  735  736  739  740  742  743  743  747  746  749  749  751  752
+##  [43]  752  754  756  758  758  760  760  761  762  763  763  764  764  764
+##  [57]  764  766  767  769  768  770  771  771  771  771  772  773  773  773
+##  [71]  774  774  774  774  775  775  775  774  776  776  776  776  776  776
+##  [85]  777  778  778  780  780  780  781  782  781  783  784  783  784  786
+##  [99]  786  786  787  788  787  788  788  790  789  790  791  791  791  792
+## [113]  793  792  793  793  794  794  794  794  795  796  796  797  796  797
+## [127]  796  797  798  797  798  799  799  801  800  802  801  802  802  803
+## [141]  803  803  803  804  804  804  804  804  805  805  806  806  808  807
+## [155]  809  810  810  811  811  812  812  813  812  814  814  814  816  818
+## [169]  818  819  820  819  821  821  821  822  822  822  825  826  826  827
+## [183]  827  827  827  827  829  828  829  829  830  830  830  831  831  832
+## [197]  832  832  832  834  833  834  834  834  834  836  837  838  837  837
+## [211]  838  839  840  840  841  870  943 1089 1129 1133 1190 1318 1344
 </code></pre>
 
 <h2>Examples</h2>
@@ -378,33 +394,33 @@ flights &lt;- get_flights(fly_from = &quot;COR&quot;,
 length(flights)
 </code></pre>
 
-<pre><code>## [1] 175
+<pre><code>## [1] 218
 </code></pre>
 
 <pre><code class="r">head(t(sapply(flights, function(x) c(x$price, x$cityTo))), n = 20)
 </code></pre>
 
 <pre><code>##       [,1] [,2]                   
-##  [1,] &quot;25&quot; &quot;Salta&quot;                
-##  [2,] &quot;25&quot; &quot;Salta&quot;                
-##  [3,] &quot;25&quot; &quot;Salta&quot;                
-##  [4,] &quot;25&quot; &quot;Salta&quot;                
-##  [5,] &quot;29&quot; &quot;San Miguel de Tucumán&quot;
-##  [6,] &quot;29&quot; &quot;San Miguel de Tucumán&quot;
-##  [7,] &quot;29&quot; &quot;San Miguel de Tucumán&quot;
-##  [8,] &quot;29&quot; &quot;San Miguel de Tucumán&quot;
-##  [9,] &quot;29&quot; &quot;Corrientes&quot;           
-## [10,] &quot;31&quot; &quot;Buenos Aires&quot;         
-## [11,] &quot;31&quot; &quot;Buenos Aires&quot;         
-## [12,] &quot;31&quot; &quot;Buenos Aires&quot;         
-## [13,] &quot;31&quot; &quot;Buenos Aires&quot;         
-## [14,] &quot;31&quot; &quot;Buenos Aires&quot;         
-## [15,] &quot;31&quot; &quot;Buenos Aires&quot;         
-## [16,] &quot;31&quot; &quot;Buenos Aires&quot;         
-## [17,] &quot;31&quot; &quot;Buenos Aires&quot;         
-## [18,] &quot;31&quot; &quot;Buenos Aires&quot;         
-## [19,] &quot;31&quot; &quot;Buenos Aires&quot;         
-## [20,] &quot;31&quot; &quot;Buenos Aires&quot;
+##  [1,] &quot;25&quot; &quot;Buenos Aires&quot;         
+##  [2,] &quot;25&quot; &quot;Buenos Aires&quot;         
+##  [3,] &quot;25&quot; &quot;Buenos Aires&quot;         
+##  [4,] &quot;25&quot; &quot;Buenos Aires&quot;         
+##  [5,] &quot;28&quot; &quot;San Miguel de Tucumán&quot;
+##  [6,] &quot;28&quot; &quot;San Miguel de Tucumán&quot;
+##  [7,] &quot;28&quot; &quot;San Miguel de Tucumán&quot;
+##  [8,] &quot;28&quot; &quot;Buenos Aires&quot;         
+##  [9,] &quot;28&quot; &quot;Buenos Aires&quot;         
+## [10,] &quot;28&quot; &quot;Buenos Aires&quot;         
+## [11,] &quot;30&quot; &quot;Buenos Aires&quot;         
+## [12,] &quot;30&quot; &quot;Buenos Aires&quot;         
+## [13,] &quot;30&quot; &quot;Buenos Aires&quot;         
+## [14,] &quot;30&quot; &quot;Buenos Aires&quot;         
+## [15,] &quot;30&quot; &quot;Salta&quot;                
+## [16,] &quot;30&quot; &quot;Neuquén&quot;              
+## [17,] &quot;30&quot; &quot;Neuquén&quot;              
+## [18,] &quot;34&quot; &quot;Puerto Iguazú&quot;        
+## [19,] &quot;34&quot; &quot;Puerto Iguazú&quot;        
+## [20,] &quot;33&quot; &quot;Neuquén&quot;
 </code></pre>
 
 </body>
