@@ -262,7 +262,7 @@ length(tl_id)
 <pre><code>## [1] 5
 </code></pre>
 
-<pre><code class="r">lapply(tl_id, function (x) x$type)
+<pre><code class="r">lapply(tl_id, function(x) x$type)
 </code></pre>
 
 <pre><code>## [[1]]
@@ -282,7 +282,7 @@ length(tl_id)
 </code></pre>
 
 <pre><code class="r"># we are looking for the city
-tl_id &lt;- tl_id[[which(sapply(tl_id, function (x) x$type == &quot;city&quot;))]]
+tl_id &lt;- tl_id[[which(sapply(tl_id, function(x) x$type == &quot;city&quot;))]]
 tl_id$country
 </code></pre>
 
@@ -309,58 +309,14 @@ tl_id
 <h3>Get flight prices</h3>
 
 <pre><code class="r"># get flights from Argentina to toulouse around 01 July to 09 July
-# Maybe I can go to the user2019 🤔??
-flights &lt;- get_flights(fly_from = &quot;AR&quot;, fly_to = &quot;toulouse_fr&quot;,
-                       date_from = &quot;01/09/2019&quot;, date_to = &quot;09/09/2019&quot;)
+# Maybe I can go to the useR! 2019?
+flights &lt;- get_flights(
+  fly_from = &quot;AR&quot;, fly_to = &quot;toulouse_fr&quot;,
+  date_from = &quot;01/09/2019&quot;, date_to = &quot;09/09/2019&quot;
+)
 length(flights)
-</code></pre>
-
-<pre><code>## [1] 223
-</code></pre>
-
-<pre><code class="r">names(flights[[1]])
-</code></pre>
-
-<pre><code>##  [1] &quot;id&quot;                            &quot;countryFrom&quot;                  
-##  [3] &quot;countryTo&quot;                     &quot;bags_price&quot;                   
-##  [5] &quot;baglimit&quot;                      &quot;dTime&quot;                        
-##  [7] &quot;aTime&quot;                         &quot;dTimeUTC&quot;                     
-##  [9] &quot;p1&quot;                            &quot;p2&quot;                           
-## [11] &quot;p3&quot;                            &quot;aTimeUTC&quot;                     
-## [13] &quot;price&quot;                         &quot;flyFrom&quot;                      
-## [15] &quot;mapIdfrom&quot;                     &quot;mapIdto&quot;                      
-## [17] &quot;flyTo&quot;                         &quot;distance&quot;                     
-## [19] &quot;cityFrom&quot;                      &quot;cityTo&quot;                       
-## [21] &quot;route&quot;                         &quot;routes&quot;                       
-## [23] &quot;airlines&quot;                      &quot;nightsInDest&quot;                 
-## [25] &quot;pnr_count&quot;                     &quot;transfers&quot;                    
-## [27] &quot;has_airport_change&quot;            &quot;virtual_interlining&quot;          
-## [29] &quot;fly_duration&quot;                  &quot;duration&quot;                     
-## [31] &quot;facilitated_booking_available&quot; &quot;type_flights&quot;                 
-## [33] &quot;found_on&quot;                      &quot;conversion&quot;                   
-## [35] &quot;booking_token&quot;                 &quot;quality&quot;                      
-## [37] &quot;deep_link&quot;
-</code></pre>
-
-<pre><code class="r">sapply(flights, function(x) x$price)
-</code></pre>
-
-<pre><code>##   [1]  667  667  667  668  669  671  679  680  686  691  699  699  703  708
-##  [15]  708  712  715  716  717  717  718  718  720  720  724  723  725  727
-##  [29]  728  735  736  739  740  742  743  743  747  746  749  749  751  752
-##  [43]  752  754  756  758  758  760  760  761  762  763  763  764  764  764
-##  [57]  764  766  767  769  768  770  771  771  771  771  772  773  773  773
-##  [71]  774  774  774  774  775  775  775  774  776  776  776  776  776  776
-##  [85]  777  778  778  780  780  780  781  782  781  783  784  783  784  786
-##  [99]  786  786  787  788  787  788  788  790  789  790  791  791  791  792
-## [113]  793  792  793  793  794  794  794  794  795  796  796  797  796  797
-## [127]  796  797  798  797  798  799  799  801  800  802  801  802  802  803
-## [141]  803  803  803  804  804  804  804  804  805  805  806  806  808  807
-## [155]  809  810  810  811  811  812  812  813  812  814  814  814  816  818
-## [169]  818  819  820  819  821  821  821  822  822  822  825  826  826  827
-## [183]  827  827  827  827  829  828  829  829  830  830  830  831  831  832
-## [197]  832  832  832  834  833  834  834  834  834  836  837  838  837  837
-## [211]  838  839  840  840  841  870  943 1089 1129 1133 1190 1318 1344
+names(flights[[1]])
+sapply(flights, function(x) x$price)
 </code></pre>
 
 <h2>Examples</h2>
@@ -369,16 +325,18 @@ length(flights)
 
 <p>I used it to alert through a <a href="https://www.pushbullet.com/">Pushbullet</a> message.</p>
 
-<pre><code class="r">my_savings &lt;- 25 # yup, just 25USD 😣
-found_ticket &lt;- FALSE
+<pre><code class="r">my_savings &lt;- 25 # yup, just 25USD ound_ticket &lt;- FALSE
 while (!found_ticket) {
-  flights &lt;- get_flights(fly_from = &quot;AR&quot;, fly_to = &quot;toulouse_fr&quot;,
-                         date_from = &quot;01/09/2019&quot;, date_to = &quot;09/09/2019&quot;)
+  flights &lt;- get_flights(
+    fly_from = &quot;AR&quot;, fly_to = &quot;toulouse_fr&quot;,
+    date_from = &quot;01/09/2019&quot;, date_to = &quot;09/09/2019&quot;
+  )
   flights &lt;- flights[sapply(flights, function(x) x$price) &lt;= my_savings]
   if (length(flights) &gt; 0) {
     send_alert(paste0(
       &quot;There is a plane ticket you can afford!\n&quot;,
-      &quot;Check it out at Kiwi.com&quot;))
+      &quot;Check it out at Kiwi.com&quot;
+    ))
     # user-defined alert function (not in rflights)
   }
 }
@@ -389,38 +347,40 @@ while (!found_ticket) {
 <p>Find plane tickets from my city to anywhere, from today to 2 next weeks.</p>
 
 <pre><code class="r"># I am a freelancer, let&#39;s go anywhere!
-flights &lt;- get_flights(fly_from = &quot;COR&quot;,
-                       date_from = Sys.Date(), date_to = Sys.Date()+2*7)
+flights &lt;- get_flights(
+  fly_from = &quot;COR&quot;,
+  date_from = Sys.Date(), date_to = Sys.Date() + 2 * 7
+)
 length(flights)
 </code></pre>
 
-<pre><code>## [1] 218
+<pre><code>## [1] 234
 </code></pre>
 
 <pre><code class="r">head(t(sapply(flights, function(x) c(x$price, x$cityTo))), n = 20)
 </code></pre>
 
 <pre><code>##       [,1] [,2]                   
-##  [1,] &quot;25&quot; &quot;Buenos Aires&quot;         
-##  [2,] &quot;25&quot; &quot;Buenos Aires&quot;         
-##  [3,] &quot;25&quot; &quot;Buenos Aires&quot;         
-##  [4,] &quot;25&quot; &quot;Buenos Aires&quot;         
-##  [5,] &quot;28&quot; &quot;San Miguel de Tucumán&quot;
-##  [6,] &quot;28&quot; &quot;San Miguel de Tucumán&quot;
-##  [7,] &quot;28&quot; &quot;San Miguel de Tucumán&quot;
-##  [8,] &quot;28&quot; &quot;Buenos Aires&quot;         
-##  [9,] &quot;28&quot; &quot;Buenos Aires&quot;         
-## [10,] &quot;28&quot; &quot;Buenos Aires&quot;         
-## [11,] &quot;30&quot; &quot;Buenos Aires&quot;         
-## [12,] &quot;30&quot; &quot;Buenos Aires&quot;         
-## [13,] &quot;30&quot; &quot;Buenos Aires&quot;         
-## [14,] &quot;30&quot; &quot;Buenos Aires&quot;         
-## [15,] &quot;30&quot; &quot;Salta&quot;                
-## [16,] &quot;30&quot; &quot;Neuquén&quot;              
-## [17,] &quot;30&quot; &quot;Neuquén&quot;              
-## [18,] &quot;34&quot; &quot;Puerto Iguazú&quot;        
-## [19,] &quot;34&quot; &quot;Puerto Iguazú&quot;        
-## [20,] &quot;33&quot; &quot;Neuquén&quot;
+##  [1,] &quot;24&quot; &quot;Buenos Aires&quot;         
+##  [2,] &quot;24&quot; &quot;Buenos Aires&quot;         
+##  [3,] &quot;24&quot; &quot;Salta&quot;                
+##  [4,] &quot;29&quot; &quot;San Miguel de Tucumán&quot;
+##  [5,] &quot;29&quot; &quot;San Miguel de Tucumán&quot;
+##  [6,] &quot;29&quot; &quot;Buenos Aires&quot;         
+##  [7,] &quot;29&quot; &quot;Buenos Aires&quot;         
+##  [8,] &quot;30&quot; &quot;Buenos Aires&quot;         
+##  [9,] &quot;30&quot; &quot;Buenos Aires&quot;         
+## [10,] &quot;30&quot; &quot;Neuquén&quot;              
+## [11,] &quot;31&quot; &quot;Salta&quot;                
+## [12,] &quot;31&quot; &quot;Salta&quot;                
+## [13,] &quot;31&quot; &quot;Salta&quot;                
+## [14,] &quot;35&quot; &quot;Buenos Aires&quot;         
+## [15,] &quot;35&quot; &quot;Buenos Aires&quot;         
+## [16,] &quot;35&quot; &quot;Buenos Aires&quot;         
+## [17,] &quot;35&quot; &quot;Buenos Aires&quot;         
+## [18,] &quot;35&quot; &quot;Neuquén&quot;              
+## [19,] &quot;37&quot; &quot;Buenos Aires&quot;         
+## [20,] &quot;36&quot; &quot;Buenos Aires&quot;
 </code></pre>
 
 </body>
